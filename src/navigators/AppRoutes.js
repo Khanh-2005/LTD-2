@@ -2,11 +2,12 @@ import React, { useEffect, useMemo, useState } from "react";
 import SplashScreen from "../screens/SplashScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import LoginScreen from "../screens/Login";
-
+import SignUpScreen from "../screens/Signup";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
   login: "/login",
+  signup: "/signup",
 };
 
 const AppRoutes = () => {
@@ -22,7 +23,7 @@ const AppRoutes = () => {
         setCurrentRoute(nextRoute);
       },
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -44,8 +45,10 @@ const AppRoutes = () => {
       return <OnboardingScreen navigation={navigation} />;
     case routes.login:
       return <LoginScreen navigation={navigation} />;
+    case routes.signup:
+      return <SignUpScreen navigation={navigation} />;
     default:
-      return <OnboardingScreen navigation={navigation} />;
+      return <SignUpScreen navigation={navigation} />;
   }
 };
 
