@@ -10,7 +10,6 @@ import {
   Text,
   TextInput,
   View,
-  passwordError,
 } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 import { appColors } from "../constants/appColors";

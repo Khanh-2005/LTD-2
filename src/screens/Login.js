@@ -245,7 +245,7 @@ const LoginScreen = ({ navigation }) => {
             </Pressable>
 
             <Pressable
-              onPress={() => Alert.alert("Forgot Password", "Coming soon.")}
+              onPress={() => navigation?.navigate?.("/forgot-password")}
             >
               <Text style={styles.forgotText}>Forgot Password?</Text>
             </Pressable>
