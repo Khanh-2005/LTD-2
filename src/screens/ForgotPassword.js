@@ -35,7 +35,23 @@ const MailIcon = () => (
     />
   </Svg>
 );
-
+const ArrowRightIcon = () => (
+  <Svg width={18} height={18} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M5 12h14"
+      stroke="#FFFFFF"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+    />
+    <Path
+      d="m13 6 6 6-6 6"
+      stroke="#FFFFFF"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
 const ArrowLeftIcon = () => (
   <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
     <Path
@@ -116,6 +132,9 @@ const ForgotPasswordScreen = ({ navigation }) => {
             ]}
           >
             <Text style={styles.submitText}>SEND</Text>
+            <View style={styles.arrow}>
+              <ArrowRightIcon />
+            </View>
           </Pressable>
 
           <View style={styles.loginRow}>
@@ -191,6 +210,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 24,
+  },
+  arrow: {
+    position: "absolute",
+    right: 13,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
   loginText: { color: "#120D26", fontSize: 14 },
   loginLink: { color: appColors.primary, fontSize: 14 },

@@ -25,6 +25,23 @@ const ArrowLeftIcon = () => (
   </Svg>
 );
 
+const ArrowRightIcon = () => (
+  <Svg width={18} height={18} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M5 12h14"
+      stroke="#FFFFFF"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+    />
+    <Path
+      d="m13 6 6 6-6 6"
+      stroke="#FFFFFF"
+      strokeWidth={2.2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
 const VerificationScreen = ({ navigation, route }) => {
   const email = route?.params?.email || "your email address";
   const [code, setCode] = useState(["", "", "", ""]);
@@ -74,18 +91,25 @@ const VerificationScreen = ({ navigation, route }) => {
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
         >
+          <Pressable
+            onPress={() => navigation?.navigate?.("/login")}
+            hitSlop={10}
+            style={styles.backButton}
+          >
+            <ArrowLeftIcon />
+          </Pressable>
+
+          <Text style={styles.heading}>Verification</Text>
+          <Text style={styles.description}>
+            We've sent you the verification code on {maskedEmail}
+          </Text>
           <View style={styles.content}>
             <Pressable
               onPress={() => navigation.navigate("forgotPassword")}
               hitSlop={10}
               style={styles.backButton}
-            >
-              <Text style={styles.backIcon}>‹</Text>
-            </Pressable>
-            <Text style={styles.heading}>Verification</Text>
-            <Text style={styles.description}>
-              We've sent you the verification code on {maskedEmail}
-            </Text>
+            ></Pressable>
+
             <View style={styles.codeRow}>
               {code.map((value, index) => (
                 <TextInput
@@ -113,7 +137,9 @@ const VerificationScreen = ({ navigation, route }) => {
               ]}
             >
               <Text style={styles.continueText}>CONTINUE</Text>
-              <Text style={styles.arrow}>›</Text>
+              <View style={styles.arrow}>
+                <ArrowRightIcon />
+              </View>
             </Pressable>
             {error ? <Text style={styles.errorText}>{error}</Text> : null}
             <View style={styles.resendRow}>
@@ -133,12 +159,18 @@ export default VerificationScreen;
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: "#FDFCFF" },
   keyboardView: { flex: 1 },
-  content: { flex: 1, paddingHorizontal: 18, paddingTop: 28 },
+  content: {
+    flexGrow: 1,
+    paddingHorizontal: 22,
+    paddingTop: 36,
+    paddingBottom: 34,
+  },
   backButton: {
     width: 32,
     height: 32,
+    alignItems: "flex-start",
     justifyContent: "center",
-    marginBottom: 10,
+    marginBottom: 28,
   },
   backIcon: {
     color: "#120D26",
@@ -148,20 +180,25 @@ const styles = StyleSheet.create({
   },
   heading: {
     color: "#120D26",
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "700",
-    marginBottom: 10,
+    marginBottom: 12,
   },
-  description: { color: "#514D5D", fontSize: 11, lineHeight: 17 },
+  description: {
+    color: "#807A7A",
+    fontSize: 15,
+    lineHeight: 22,
+    marginBottom: -40,
+  },
   codeRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 26,
+    marginTop: 0,
     paddingHorizontal: 4,
   },
   codeInput: {
-    width: 35,
-    height: 35,
+    width: 50,
+    height: 50,
     borderWidth: 1,
     borderColor: "#E3E1EA",
     borderRadius: 8,
@@ -173,39 +210,37 @@ const styles = StyleSheet.create({
   },
   filledInput: { borderColor: appColors.primary },
   continueButton: {
-    height: 36,
-    marginTop: 25,
-    borderRadius: 9,
+    height: 56,
+    marginTop: 18,
+    borderRadius: 12,
     backgroundColor: appColors.primary,
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: appColors.primary,
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 5,
+    elevation: 6,
   },
   disabledButton: { backgroundColor: "#C8CCD9", shadowOpacity: 0 },
   pressedButton: { opacity: 0.85 },
   continueText: {
     color: appColors.white,
-    fontSize: 11,
-    fontWeight: "700",
-    letterSpacing: 1,
+    fontSize: 15,
+    fontWeight: "600",
   },
   arrow: {
-    marginLeft: 10,
-    color: appColors.white,
-    fontSize: 22,
-    lineHeight: 20,
+    position: "absolute",
+    right: 13,
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
   },
   errorText: {
     color: appColors.danger,
-    textAlign: "center",
-    fontSize: 11,
-    marginTop: 12,
+    fontSize: 12,
+    marginBottom: 12,
   },
+
   resendRow: { alignItems: "center", marginTop: 15 },
-  resendLink: { color: appColors.primary, fontSize: 11, fontWeight: "600" },
+  resendLink: { color: appColors.primary, fontSize: 14 },
 });
