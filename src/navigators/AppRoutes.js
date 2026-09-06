@@ -6,6 +6,7 @@ import SignUpScreen from "../screens/Signup";
 import ForgotPasswordScreen from "../screens/ForgotPassword";
 import VerificationScreen from "../screens/Verification";
 import HomeScreen from "../screens/Home";
+import MenuScreen from "../screens/MenuScreen";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -14,6 +15,7 @@ export const routes = {
   forgotPassword: "/forgot-password",
   verification: "/verification",
   home: "/home",
+  menu: "/menu",
 };
 
 const AppRoutes = () => {
@@ -65,7 +67,19 @@ const AppRoutes = () => {
         />
       );
     case routes.home:
-      return <HomeScreen navigation={navigation} />;
+      return (
+        <HomeScreen
+          navigation={navigation}
+          onOpenDrawer={() => navigation.navigate(routes.menu)}
+        />
+      );
+    case routes.menu:
+      return (
+        <MenuScreen
+          onNavigateBack={() => navigation.navigate(routes.home)}
+          onNavigateTo={() => {}}
+        />
+      );
     default:
       return <SignUpScreen navigation={navigation} />;
   }

@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import { appColors } from "../constants/appColors";
-import { Text, Space } from "../components";
+import { TextComponent, SpaceComponent } from "../components";
 
 // ─── SVG-like vector icons as inline components ─────────────────────────────
 
@@ -157,7 +157,7 @@ const IconCalendar = ({ color = "#120D26", size = 22 }) => (
 
 const IconBookmark = ({ color = appColors.primary, size = 22 }) => (
   <Image
-    source={require("../../img/Vector.png")}
+    source={require("../assets/images/Vector.png")}
     style={{ width: size, height: size, tintColor: color }}
     resizeMode="contain"
   />
@@ -220,7 +220,7 @@ const IconSettings = ({ color = "#120D26", size = 22 }) => (
       justifyContent: "center",
     }}
   >
-    <Text text="⚙" size={size * 0.9} color={color} />
+    <TextComponent text="⚙" size={size * 0.9} color={color} />
   </View>
 );
 
@@ -236,7 +236,7 @@ const IconHelp = ({ color = "#120D26", size = 22 }) => (
       justifyContent: "center",
     }}
   >
-    <Text text="?" size={size * 0.6} color={color} weight="700" />
+    <TextComponent text="?" size={size * 0.6} color={color} weight="700" />
   </View>
 );
 
@@ -249,7 +249,7 @@ const IconMoon = ({ color = "#120D26", size = 22 }) => (
       justifyContent: "center",
     }}
   >
-    <Text text="🌙" size={size * 0.85} />
+    <TextComponent text="🌙" size={size * 0.85} />
   </View>
 );
 
@@ -262,7 +262,7 @@ const IconLogout = ({ color = "#F0635A", size = 22 }) => (
       justifyContent: "center",
     }}
   >
-    <Text text="→" size={size} color={color} weight="700" />
+    <TextComponent text="→" size={size} color={color} weight="700" />
   </View>
 );
 
@@ -311,7 +311,7 @@ const MenuItem = ({ icon, label, onPress, showArrow = true, rightContent }) => (
     activeOpacity={0.7}
   >
     <View style={styles.menuIconWrap}>{icon}</View>
-    <Text
+    <TextComponent
       text={label}
       size={15}
       weight="500"
@@ -321,7 +321,7 @@ const MenuItem = ({ icon, label, onPress, showArrow = true, rightContent }) => (
     {rightContent ? (
       rightContent
     ) : showArrow ? (
-      <Text
+      <TextComponent
         text="›"
         size={22}
         color={appColors.textSecondary}
@@ -348,14 +348,19 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
             style={styles.backBtn}
             activeOpacity={0.7}
           >
-            <Text
+            <TextComponent
               text="‹"
               size={28}
               color={appColors.text}
               style={{ marginTop: -4 }}
             />
           </TouchableOpacity>
-          <Text text="Profile" size={18} weight="700" color={appColors.text} />
+          <TextComponent
+            text="Profile"
+            size={18}
+            weight="700"
+            color={appColors.text}
+          />
           <View style={{ width: 40 }} />
         </View>
       </SafeAreaView>
@@ -371,15 +376,15 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
             {/* Online badge */}
             <View style={styles.onlineBadge} />
           </View>
-          <Space height={12} />
-          <Text
+          <SpaceComponent height={12} />
+          <TextComponent
             text="Andrew Ainsley"
             size={20}
             weight="700"
             color={appColors.text}
           />
-          <Space height={4} />
-          <Text
+          <SpaceComponent height={4} />
+          <TextComponent
             text="andrew_ainsley@yourdomain.com"
             size={13}
             color={appColors.textSecondary}
@@ -449,7 +454,7 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
           />
         </View>
 
-        <Space height={24} />
+        <SpaceComponent height={24} />
 
         {/* Logout Button */}
         <TouchableOpacity
@@ -460,10 +465,15 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
           <View style={styles.logoutIconWrap}>
             <IconLogout color={appColors.danger} size={20} />
           </View>
-          <Text text="Logout" size={15} weight="600" color={appColors.danger} />
+          <TextComponent
+            text="Logout"
+            size={15}
+            weight="600"
+            color={appColors.danger}
+          />
         </TouchableOpacity>
 
-        <Space height={40} />
+        <SpaceComponent height={40} />
       </ScrollView>
     </View>
   );
