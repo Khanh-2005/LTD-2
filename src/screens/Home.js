@@ -8,6 +8,7 @@ import {
   StatusBar,
   TextInput,
   Image,
+  ImageBackground,
   Dimensions,
   Platform,
 } from "react-native";
@@ -311,11 +312,13 @@ export const HomeScreen = ({
                 style={styles.eventCard}
               >
                 {/* Event Image / Banner Background */}
-                <View
+                <ImageBackground
+                  source={require("../assets/images/bg_event.png")}
                   style={[
                     styles.eventBanner,
                     { backgroundColor: event.bgGradient },
                   ]}
+                  imageStyle={styles.eventBannerImage}
                 >
                   {/* Date Badge */}
                   <View style={styles.dateBadge}>
@@ -345,7 +348,7 @@ export const HomeScreen = ({
                       color={isBookmarked ? "#EB5757" : appColors.white}
                     />
                   </TouchableOpacity>
-                </View>
+                </ImageBackground>
 
                 {/* Event Details */}
                 <View style={styles.eventInfo}>

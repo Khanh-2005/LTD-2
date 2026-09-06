@@ -77,7 +77,11 @@ const AppRoutes = () => {
       return (
         <MenuScreen
           onNavigateBack={() => navigation.navigate(routes.home)}
-          onNavigateTo={() => {}}
+          onNavigateTo={(destination) => {
+            if (destination === "logout") {
+              navigation.navigate(routes.login);
+            }
+          }}
         />
       );
     default:

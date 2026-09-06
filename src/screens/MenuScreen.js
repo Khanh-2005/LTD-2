@@ -157,7 +157,7 @@ const IconCalendar = ({ color = "#120D26", size = 22 }) => (
 
 const IconBookmark = ({ color = appColors.primary, size = 22 }) => (
   <Image
-    source={require("../assets/images/Vector.png")}
+    source={require("../assets/images/like.png")}
     style={{ width: size, height: size, tintColor: color }}
     resizeMode="contain"
   />
