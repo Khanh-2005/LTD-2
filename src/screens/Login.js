@@ -15,7 +15,6 @@ import {
 } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 import { appColors } from "../constants/appColors";
-
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const MailIcon = () => (
@@ -252,7 +251,7 @@ const LoginScreen = ({ navigation }) => {
           </View>
 
           <Pressable
-            onPress={handleSignIn}
+            onPress={() => navigation?.navigate?.("/home")}
             style={({ pressed }) => [
               styles.signInButton,
               !canSubmit && submitted && styles.signInButtonDisabled,

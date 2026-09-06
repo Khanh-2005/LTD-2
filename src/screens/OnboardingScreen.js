@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { appColors } from "../constants/appColors";
-import { appInfo } from "../constants/appInfos";
 import { fontFamilies } from "../constants/fontFamilies";
 
 const onboardingImages = [
@@ -27,7 +32,11 @@ const OnboardingScreen = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground source={onboardingImages[index]} style={styles.container} resizeMode="cover">
+    <ImageBackground
+      source={onboardingImages[index]}
+      style={styles.container}
+      resizeMode="cover"
+    >
       <View style={styles.dots}>
         {onboardingImages.map((_, dotIndex) => (
           <View
@@ -41,7 +50,6 @@ const OnboardingScreen = ({ navigation }) => {
         <TouchableOpacity onPress={handleSkip} style={styles.button}>
           <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
-
         <TouchableOpacity onPress={handleNext} style={styles.button}>
           <Text style={styles.nextText}>
             {index === onboardingImages.length - 1 ? "Start" : "Next"}
@@ -57,9 +65,8 @@ export default OnboardingScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: appInfo.sizes.WIDTH,
-    height: appInfo.sizes.HEIGHT,
     justifyContent: "flex-end",
+    overflow: "hidden",
   },
   dots: {
     position: "absolute",

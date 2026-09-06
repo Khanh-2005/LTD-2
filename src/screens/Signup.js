@@ -342,7 +342,7 @@ const SignUpScreen = ({ navigation }) => {
           ) : null}
 
           <Pressable
-            onPress={handleSignUp}
+            onPress={() => navigation?.navigate?.("/login")}
             style={({ pressed }) => [
               styles.signUpButton,
               !canSubmit && submitted && styles.signUpButtonDisabled,
