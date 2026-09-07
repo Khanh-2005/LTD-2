@@ -1,14 +1,15 @@
 import React, { useEffect, useMemo, useState } from "react";
 import SplashScreen from "../screens/SplashScreen";
 import OnboardingScreen from "../screens/OnboardingScreen";
-import LoginScreen from "../screens/Login";
-import SignUpScreen from "../screens/Signup";
-import ForgotPasswordScreen from "../screens/ForgotPassword";
-import VerificationScreen from "../screens/Verification";
-import HomeScreen from "../screens/Home";
+import LoginScreen from "../screens/LoginScreen";
+import SignUpScreen from "../screens/SignupScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
+import VerificationScreen from "../screens/VerificationScreen";
+import HomeScreen from "../screens/HomeScreen";
 import MenuScreen from "../screens/MenuScreen";
-import EventDetail from "../screens/EventDetail";
-import AllEvent from "../screens/AllEvent";
+import EventDetail from "../screens/EventDetailScreen";
+import AllEvent from "../screens/AllEventScreen";
+import EventPage from "../screens/EventPageScreen";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -20,11 +21,25 @@ export const routes = {
   menu: "/menu",
   eventDetail: "/event-detail",
   allEvent: "/all-event",
+  eventPage: "/event-page",
 };
 
 const AppRoutes = () => {
   const [currentRoute, setCurrentRoute] = useState(routes.splash);
   const [routeParams, setRouteParams] = useState({});
+  const [savedEvents, setSavedEvents] = useState({});
+
+  const toggleBookmark = (id, event) => {
+    setSavedEvents((current) => {
+      if (current[id]) {
+        const next = { ...current };
+        delete next[id];
+        return next;
+      }
+
+      return { ...current, [id]: event || { id } };
+    });
+  };
 
   const navigation = useMemo(
     () => ({
@@ -79,13 +94,30 @@ const AppRoutes = () => {
             navigation.navigate(routes.eventDetail, { event })
           }
           onSeeAll={() => navigation.navigate(routes.allEvent)}
+          onOpenEvents={() => navigation.navigate(routes.eventPage)}
+          savedEvents={savedEvents}
+          onToggleBookmark={(id, event) => toggleBookmark(id, event)}
         />
       );
     case routes.allEvent:
-      return <AllEvent navigation={navigation} />;
+      return (
+        <AllEvent
+          navigation={navigation}
+          savedEvents={savedEvents}
+          onToggleBookmark={toggleBookmark}
+        />
+      );
     case routes.eventDetail:
       return (
         <EventDetail navigation={navigation} route={{ params: routeParams }} />
+      );
+    case routes.eventPage:
+      return (
+        <EventPage
+          navigation={navigation}
+          savedEvents={savedEvents}
+          onToggleBookmark={toggleBookmark}
+        />
       );
     case routes.menu:
       return (

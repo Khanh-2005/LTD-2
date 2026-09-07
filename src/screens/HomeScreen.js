@@ -55,6 +55,7 @@ const UPCOMING_EVENTS = [
     avatarColors: ["#5669FF", "#FF8D5D", "#00F8FF"],
     bgGradient: "#4A54F1",
     tag: "Music",
+    image: require("../assets/images/event2.png"),
   },
   {
     id: "e2",
@@ -66,6 +67,7 @@ const UPCOMING_EVENTS = [
     avatarColors: ["#FF5656", "#29D697", "#FF8D5D"],
     bgGradient: "#5B41D9",
     tag: "Music",
+    image: require("../assets/images/event5.png"),
   },
 ];
 
@@ -97,17 +99,15 @@ export const HomeScreen = ({
   onNotificationPress,
   onEventPress,
   onSeeAll,
+  onOpenEvents,
+  savedEvents = {},
+  onToggleBookmark,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("1");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("explore"); // explore | events | map | profile
-  const [savedEvents, setSavedEvents] = useState({});
-
-  const toggleBookmark = (id) => {
-    setSavedEvents((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const toggleBookmark = (event) => {
+    onToggleBookmark?.(event.id, event);
   };
 
   return (
@@ -344,7 +344,7 @@ export const HomeScreen = ({
                     accessibilityLabel={
                       isBookmarked ? "Remove bookmark" : "Save event"
                     }
-                    onPress={() => toggleBookmark(event.id)}
+                    onPress={() => toggleBookmark(event)}
                     style={styles.bookmarkButton}
                   >
                     <Image
@@ -575,7 +575,7 @@ export const HomeScreen = ({
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setActiveTab("events")}
+          onPress={onOpenEvents}
           style={styles.navTab}
           activeOpacity={0.7}
         >
