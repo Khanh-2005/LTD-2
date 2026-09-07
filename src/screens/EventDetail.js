@@ -95,7 +95,23 @@ const EventDetail = ({ navigation, route }) => {
                 <Text
                   style={[styles.bookmarkIcon, isSaved && styles.savedIcon]}
                 >
-                  {isSaved ? "●" : "▮"}
+                  {isSaved ? (
+                    <Image
+                      source={require("../assets/images/like.png")}
+                      style={[
+                        styles.bookmarkImage,
+                        { tintColor: appColors.primary },
+                      ]}
+                    />
+                  ) : (
+                    <Image
+                      source={require("../assets/images/like.png")}
+                      style={[
+                        styles.bookmarkImage,
+                        { tintColor: appColors.white },
+                      ]}
+                    />
+                  )}
                 </Text>
               </TouchableOpacity>
             </View>

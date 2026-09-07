@@ -78,6 +78,7 @@ const NEARBY_EVENTS = [
     joinedCount: 35,
     price: "$25.00",
     color: "#3D56F0",
+    image: require("../assets/images/event3.png"),
   },
   {
     id: "n2",
@@ -87,6 +88,7 @@ const NEARBY_EVENTS = [
     joinedCount: 50,
     price: "Free",
     color: "#FF6B6B",
+    image: require("../assets/images/event5.png"),
   },
 ];
 
@@ -94,6 +96,7 @@ export const HomeScreen = ({
   onOpenDrawer,
   onNotificationPress,
   onEventPress,
+  onSeeAll,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState("1");
   const [searchQuery, setSearchQuery] = useState("");
@@ -278,7 +281,7 @@ export const HomeScreen = ({
             weight="700"
             color={appColors.text}
           />
-          <TouchableOpacity activeOpacity={0.6}>
+          <TouchableOpacity activeOpacity={0.6} onPress={onSeeAll}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TextComponent
                 text="See All "
@@ -338,14 +341,22 @@ export const HomeScreen = ({
 
                   {/* Bookmark Button */}
                   <TouchableOpacity
+                    accessibilityLabel={
+                      isBookmarked ? "Remove bookmark" : "Save event"
+                    }
                     onPress={() => toggleBookmark(event.id)}
-                    style={styles.bookmarkBtn}
-                    activeOpacity={0.7}
+                    style={styles.bookmarkButton}
                   >
-                    <TextComponent
-                      text={isBookmarked ? "🔖" : "🏷️"}
-                      size={14}
-                      color={isBookmarked ? "#EB5757" : appColors.white}
+                    <Image
+                      source={require("../assets/images/like.png")}
+                      style={[
+                        styles.bookmarkImage,
+                        {
+                          tintColor: isBookmarked
+                            ? appColors.primary
+                            : appColors.white,
+                        },
+                      ]}
                     />
                   </TouchableOpacity>
                 </ImageBackground>
@@ -465,7 +476,7 @@ export const HomeScreen = ({
             weight="700"
             color={appColors.text}
           />
-          <TouchableOpacity activeOpacity={0.6}>
+          <TouchableOpacity activeOpacity={0.6} onPress={onSeeAll}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <TextComponent
                 text="See All "
@@ -491,18 +502,11 @@ export const HomeScreen = ({
             onPress={() => onEventPress && onEventPress(event)}
             style={styles.nearbyCard}
           >
-            <View
-              style={[
-                styles.nearbyImageThumb,
-                { backgroundColor: event.color },
-              ]}
-            >
-              <Image
-                source={require("../assets/images/Calendar.png")}
-                style={{ width: 28, height: 28, tintColor: appColors.white }}
-                resizeMode="contain"
-              />
-            </View>
+            <Image
+              source={event.image}
+              style={styles.nearbyImageThumb}
+              resizeMode="cover"
+            />
             <View style={styles.nearbyInfo}>
               <TextComponent
                 text={`${event.date} • ${event.price}`}
@@ -811,6 +815,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
+  },
+  bookmarkButton: {
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    borderRadius: 8,
+    height: 30,
+    justifyContent: "center",
+    width: 30,
+  },
+  bookmarkImage: {
+    height: 17,
+    width: 17,
   },
   dateBadge: {
     backgroundColor: "rgba(255, 255, 255, 0.85)",

@@ -42,17 +42,7 @@ export const InputComponent = ({
         <TouchableOpacity
           onPress={() => setIsShowPassword(!isShowPassword)}
           style={styles.eyeBtn}
-        >
-          <Image
-            source={
-              isShowPassword
-                ? require("../assets/images/Hidden_icon.png")
-                : require("../assets/images/Visibility_icon.png")
-            }
-            style={styles.eyeIcon}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
+        ></TouchableOpacity>
       ) : value && allowClear ? (
         <TouchableOpacity
           onPress={() => onChangeText("")}

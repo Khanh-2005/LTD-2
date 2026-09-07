@@ -8,6 +8,7 @@ import VerificationScreen from "../screens/Verification";
 import HomeScreen from "../screens/Home";
 import MenuScreen from "../screens/MenuScreen";
 import EventDetail from "../screens/EventDetail";
+import AllEvent from "../screens/AllEvent";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -18,6 +19,7 @@ export const routes = {
   home: "/home",
   menu: "/menu",
   eventDetail: "/event-detail",
+  allEvent: "/all-event",
 };
 
 const AppRoutes = () => {
@@ -76,8 +78,11 @@ const AppRoutes = () => {
           onEventPress={(event) =>
             navigation.navigate(routes.eventDetail, { event })
           }
+          onSeeAll={() => navigation.navigate(routes.allEvent)}
         />
       );
+    case routes.allEvent:
+      return <AllEvent navigation={navigation} />;
     case routes.eventDetail:
       return (
         <EventDetail navigation={navigation} route={{ params: routeParams }} />
