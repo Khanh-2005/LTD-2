@@ -372,8 +372,11 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
         {/* Profile Section */}
         <View style={styles.profileSection}>
           <View style={styles.avatarWrapper}>
-            <AvatarPlaceholder size={80} />
-            {/* Online badge */}
+            <Image
+              source={require("../assets/images/avatar.png")}
+              style={[styles.avatar, styles.avatarWrapper, { width: 80, height: 80, borderRadius: 40 }]}
+            />
+            
             <View style={styles.onlineBadge} />
           </View>
           <SpaceComponent height={12} />
@@ -435,7 +438,7 @@ export const MenuScreen = ({ onNavigateBack, onNavigateTo }) => {
           />
           <MenuItem
             icon={<IconHelp color={appColors.primary} size={22} />}
-            label="Help Center"
+            label="Helps & FAQs"
             onPress={() => onNavigateTo && onNavigateTo("help")}
           />
           <MenuItem

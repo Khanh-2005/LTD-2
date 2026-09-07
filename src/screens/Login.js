@@ -17,53 +17,6 @@ import Svg, { Path, Rect } from "react-native-svg";
 import { appColors } from "../constants/appColors";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const MailIcon = () => (
-  <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
-    <Rect
-      x={3}
-      y={5}
-      width={18}
-      height={14}
-      rx={4}
-      stroke="#8A8795"
-      strokeWidth={1.7}
-    />
-    <Path
-      d="M6.5 8.5 12 12.4l5.5-3.9"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
-
-const LockIcon = () => (
-  <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
-    <Rect
-      x={5}
-      y={10}
-      width={14}
-      height={10}
-      rx={3}
-      stroke="#8A8795"
-      strokeWidth={1.7}
-    />
-    <Path
-      d="M8.5 10V8a3.5 3.5 0 0 1 7 0v2"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-    />
-    <Path
-      d="M12 14v2"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
-
 const EyeIcon = ({ isVisible }) => (
   <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
     <Path
@@ -186,7 +139,13 @@ const LoginScreen = ({ navigation }) => {
 
           <View style={[styles.inputBox, emailError && styles.inputError]}>
             <View style={styles.inputIcon}>
-              <MailIcon />
+              <Image
+                source={require("../assets/images/Mail_icon.png")}
+                style={[
+                  styles.inputIcon,
+                  { marginRight: 10, width: 22, height: 22 },
+                ]}
+              />
             </View>
             <TextInput
               value={email}
@@ -204,9 +163,13 @@ const LoginScreen = ({ navigation }) => {
           )}
 
           <View style={[styles.inputBox, passwordError && styles.inputError]}>
-            <View style={styles.inputIcon}>
-              <LockIcon />
-            </View>
+            <Image
+              source={require("../assets/images/Password_icon.png")}
+              style={[
+                styles.inputIcon,
+                { marginRight: 10, width: 22, height: 22 },
+              ]}
+            />
             <TextInput
               value={password}
               onChangeText={setPassword}
@@ -277,7 +240,9 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.socialIcon}>
               <FacebookIcon />
             </View>
-            <Text style={styles.socialText}>Login with Facebook</Text>
+            <Text style={[styles.socialText, { marginLeft: 1 }]}>
+              Login with Facebook
+            </Text>
           </Pressable>
 
           <View style={styles.signUpRow}>

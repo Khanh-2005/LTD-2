@@ -10,74 +10,12 @@ import {
   Text,
   TextInput,
   View,
+  Image,
 } from "react-native";
 import Svg, { Path, Rect } from "react-native-svg";
 import { appColors } from "../constants/appColors";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const UserIcon = () => (
-  <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M12 12a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-    />
-    <Path
-      d="M5.5 20a6.5 6.5 0 0 1 13 0"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
-
-const MailIcon = () => (
-  <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
-    <Rect
-      x={3}
-      y={5}
-      width={18}
-      height={14}
-      rx={4}
-      stroke="#8A8795"
-      strokeWidth={1.7}
-    />
-    <Path
-      d="M6.5 8.5 12 12.4l5.5-3.9"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
-
-const LockIcon = () => (
-  <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
-    <Rect
-      x={5}
-      y={10}
-      width={14}
-      height={10}
-      rx={3}
-      stroke="#8A8795"
-      strokeWidth={1.7}
-    />
-    <Path
-      d="M8.5 10V8a3.5 3.5 0 0 1 7 0v2"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-    />
-    <Path
-      d="M12 14v2"
-      stroke="#8A8795"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-    />
-  </Svg>
-);
 
 const EyeIcon = ({ isVisible }) => (
   <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
@@ -245,9 +183,13 @@ const SignUpScreen = ({ navigation }) => {
               submitted && errors.fullName && styles.inputError,
             ]}
           >
-            <View style={styles.inputIcon}>
-              <UserIcon />
-            </View>
+            <Image
+              source={require("../assets/images/Profile.png")}
+              style={[
+                styles.inputIcon,
+                { marginRight: 10, width: 22, height: 22 },
+              ]}
+            />
             <TextInput
               value={values.fullName}
               onChangeText={(value) => handleChange("fullName", value)}
@@ -266,9 +208,13 @@ const SignUpScreen = ({ navigation }) => {
               submitted && errors.email && styles.inputError,
             ]}
           >
-            <View style={styles.inputIcon}>
-              <MailIcon />
-            </View>
+            <Image
+              source={require("../assets/images/Mail_icon.png")}
+              style={[
+                styles.inputIcon,
+                { marginRight: 10, width: 22, height: 22 },
+              ]}
+            />
             <TextInput
               value={values.email}
               onChangeText={(value) => handleChange("email", value)}
@@ -289,9 +235,13 @@ const SignUpScreen = ({ navigation }) => {
               submitted && errors.password && styles.inputError,
             ]}
           >
-            <View style={styles.inputIcon}>
-              <LockIcon />
-            </View>
+            <Image
+              source={require("../assets/images/Password_icon.png")}
+              style={[
+                styles.inputIcon,
+                { marginRight: 10, width: 22, height: 22 },
+              ]}
+            />
             <TextInput
               value={values.password}
               onChangeText={(value) => handleChange("password", value)}
@@ -318,9 +268,13 @@ const SignUpScreen = ({ navigation }) => {
               submitted && errors.confirmPassword && styles.inputError,
             ]}
           >
-            <View style={styles.inputIcon}>
-              <LockIcon />
-            </View>
+            <Image
+              source={require("../assets/images/Password_icon.png")}
+              style={[
+                styles.inputIcon,
+                { marginRight: 10, width: 22, height: 22 },
+              ]}
+            />
             <TextInput
               value={values.confirmPassword}
               onChangeText={(value) => handleChange("confirmPassword", value)}
