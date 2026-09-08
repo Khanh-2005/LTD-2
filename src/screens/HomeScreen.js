@@ -101,6 +101,7 @@ export const HomeScreen = ({
   onSeeAll,
   onOpenEvents,
   onOpenProfile,
+  onOpenMap,
   savedEvents = {},
   onToggleBookmark,
 }) => {
@@ -616,7 +617,7 @@ export const HomeScreen = ({
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setActiveTab("map")}
+          onPress={onOpenMap}
           style={styles.navTab}
           activeOpacity={0.7}
         >

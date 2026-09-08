@@ -11,6 +11,7 @@ import EventDetail from "../screens/EventDetailScreen";
 import AllEvent from "../screens/AllEventScreen";
 import EventPage from "../screens/EventPageScreen";
 import ProfilePage from "../screens/MyProfileScreen";
+import MapPage from "../screens/MapScreen";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -24,6 +25,7 @@ export const routes = {
   allEvent: "/all-event",
   eventPage: "/event-page",
   profilePage: "/profile-page",
+  mapPage: "/map-page",
 };
 
 const AppRoutes = () => {
@@ -98,6 +100,7 @@ const AppRoutes = () => {
           onSeeAll={() => navigation.navigate(routes.allEvent)}
           onOpenEvents={() => navigation.navigate(routes.eventPage)}
           onOpenProfile={() => navigation.navigate(routes.profilePage)}
+          onOpenMap={() => navigation.navigate(routes.mapPage)}
           savedEvents={savedEvents}
           onToggleBookmark={(id, event) => toggleBookmark(id, event)}
         />
@@ -124,6 +127,8 @@ const AppRoutes = () => {
       );
     case routes.profilePage:
       return <ProfilePage navigation={navigation} />;
+    case routes.mapPage:
+      return <MapPage navigation={navigation} />;
     case routes.menu:
       return (
         <MenuScreen
