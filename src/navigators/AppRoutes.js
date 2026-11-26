@@ -12,6 +12,7 @@ import AllEvent from "../screens/AllEventScreen";
 import EventPage from "../screens/EventPageScreen";
 import ProfilePage from "../screens/MyProfileScreen";
 import MapPage from "../screens/MapScreen";
+import EmptyNotificationScreen from "../screens/EmptyNotificationScreen";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -26,6 +27,7 @@ export const routes = {
   eventPage: "/event-page",
   profilePage: "/profile-page",
   mapPage: "/map-page",
+  emptyNotification: "/empty-notification",
 };
 
 const AppRoutes = () => {
@@ -101,6 +103,9 @@ const AppRoutes = () => {
           onOpenEvents={() => navigation.navigate(routes.eventPage)}
           onOpenProfile={() => navigation.navigate(routes.profilePage)}
           onOpenMap={() => navigation.navigate(routes.mapPage)}
+          onNotificationPress={() =>
+            navigation.navigate(routes.emptyNotification)
+          }
           savedEvents={savedEvents}
           onToggleBookmark={(id, event) => toggleBookmark(id, event)}
         />
@@ -129,6 +134,8 @@ const AppRoutes = () => {
       return <ProfilePage navigation={navigation} />;
     case routes.mapPage:
       return <MapPage navigation={navigation} />;
+    case routes.emptyNotification:
+      return <EmptyNotificationScreen navigation={navigation} />;
     case routes.menu:
       return (
         <MenuScreen
