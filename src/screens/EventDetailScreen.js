@@ -14,6 +14,7 @@ import {
 import Svg, { Path, Rect } from "react-native-svg";
 import { StatusBar } from "expo-status-bar";
 import { appColors } from "../constants/appColors";
+import InviteFriendScreen from "./InviteFriendScreen";
 
 const FALLBACK_EVENT = {
   title: "International Band Music Concert",
@@ -64,6 +65,7 @@ const ArrowLeftIcon = () => (
 const EventDetail = ({ navigation, route }) => {
   const event = { ...FALLBACK_EVENT, ...(route?.params?.event || {}) };
   const [isSaved, setIsSaved] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -129,7 +131,11 @@ const EventDetail = ({ navigation, route }) => {
             ))}
           </View>
           <Text style={styles.goingText}>+20 Going</Text>
-          <TouchableOpacity style={styles.inviteButton} activeOpacity={0.8}>
+          <TouchableOpacity
+            onPress={() => setShowInviteModal(true)}
+            style={styles.inviteButton}
+            activeOpacity={0.8}
+          >
             <Text style={styles.inviteText}>Invite</Text>
           </TouchableOpacity>
         </View>
@@ -183,6 +189,11 @@ const EventDetail = ({ navigation, route }) => {
           </Pressable>
         </View>
       </ScrollView>
+
+      <InviteFriendScreen
+        visible={showInviteModal}
+        onClose={() => setShowInviteModal(false)}
+      />
     </View>
   );
 };

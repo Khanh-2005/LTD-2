@@ -53,6 +53,13 @@ const INITIAL_NOTIFICATIONS = [
     time: "5 min ago",
     avatar: require("../assets/images/avatar_noti2.png"),
     hasActions: true,
+    event: {
+      id: "noti-event-2",
+      image: require("../assets/images/event3.png"),
+      date: "Fri, Aug 23 • 6:00 PM",
+      title: "International Kids Safe Parents Night Out",
+      location: "Lot 13 • Oakland, CA",
+    },
   },
   {
     id: "noti-3",
@@ -76,6 +83,13 @@ const INITIAL_NOTIFICATIONS = [
     time: "1 hr ago",
     avatar: require("../assets/images/avatar_noti4.png"),
     hasActions: true,
+    event: {
+      id: "noti-event-4",
+      image: require("../assets/images/event2.png"),
+      date: "Fri, Aug 23 • 6:00 PM",
+      title: "International Kids Safe Parents Night Out",
+      location: "Lot 13 • Oakland, CA",
+    },
   },
   {
     id: "noti-5",
@@ -84,6 +98,13 @@ const INITIAL_NOTIFICATIONS = [
     time: "9 hr ago",
     avatar: require("../assets/images/avatar_noti5.png"),
     hasActions: true,
+    event: {
+      id: "noti-event-5",
+      image: require("../assets/images/event6.png"),
+      date: "Fri, Aug 23 • 6:00 PM",
+      title: "Gala Music Festival",
+      location: "Lot 13 • Oakland, CA",
+    },
   },
   {
     id: "noti-6",
@@ -107,6 +128,13 @@ const INITIAL_NOTIFICATIONS = [
     time: "Wed, 3:30 pm",
     avatar: require("../assets/images/avatar_noti3.png"),
     hasActions: true,
+    event: {
+      id: "noti-event-7",
+      image: require("../assets/images/event5.png"),
+      date: "Sat, May 1 • 2:00 PM",
+      title: "A Virtual Evening of Smooth Jazz",
+      location: "Lot 13 • Oakland, CA",
+    },
   },
 ];
 

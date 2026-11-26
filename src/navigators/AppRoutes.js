@@ -16,6 +16,7 @@ import NotificationScreen, {
   INITIAL_NOTIFICATIONS,
 } from "../screens/NotificationScreen";
 import EmptyNotificationScreen from "../screens/EmptyNotificationScreen";
+import InviteFriendScreen from "../screens/InviteFriendScreen";
 export const routes = {
   splash: "/splash",
   onboarding: "/onboarding",
@@ -32,6 +33,7 @@ export const routes = {
   mapPage: "/map-page",
   notification: "/notification",
   emptyNotification: "/empty-notification",
+  inviteFriend: "/invite-friend",
 };
 
 const AppRoutes = () => {
@@ -41,10 +43,18 @@ const AppRoutes = () => {
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
 
   const handleNotificationAction = (item, accepted) => {
-    if (accepted && item?.event) {
+    if (accepted) {
+      const eventToSave = item?.event || {
+        id: `noti-event-${item.id}`,
+        image: item.avatar,
+        date: item.time,
+        title: item.message,
+        location: item.name,
+      };
+
       setSavedEvents((current) => ({
         ...current,
-        [item.event.id]: item.event,
+        [eventToSave.id]: eventToSave,
       }));
     }
 
@@ -178,6 +188,8 @@ const AppRoutes = () => {
       );
     case routes.emptyNotification:
       return <EmptyNotificationScreen navigation={navigation} />;
+    case routes.inviteFriend:
+      return <InviteFriendScreen navigation={navigation} />;
     case routes.menu:
       return (
         <MenuScreen
