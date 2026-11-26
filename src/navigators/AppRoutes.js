@@ -12,6 +12,9 @@ import AllEvent from "../screens/AllEventScreen";
 import EventPage from "../screens/EventPageScreen";
 import ProfilePage from "../screens/MyProfileScreen";
 import MapPage from "../screens/MapScreen";
+import NotificationScreen, {
+  INITIAL_NOTIFICATIONS,
+} from "../screens/NotificationScreen";
 import EmptyNotificationScreen from "../screens/EmptyNotificationScreen";
 export const routes = {
   splash: "/splash",
@@ -27,6 +30,7 @@ export const routes = {
   eventPage: "/event-page",
   profilePage: "/profile-page",
   mapPage: "/map-page",
+  notification: "/notification",
   emptyNotification: "/empty-notification",
 };
 
@@ -34,6 +38,28 @@ const AppRoutes = () => {
   const [currentRoute, setCurrentRoute] = useState(routes.splash);
   const [routeParams, setRouteParams] = useState({});
   const [savedEvents, setSavedEvents] = useState({});
+  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
+
+  const handleNotificationAction = (item, accepted) => {
+    if (accepted && item?.event) {
+      setSavedEvents((current) => ({
+        ...current,
+        [item.event.id]: item.event,
+      }));
+    }
+
+    setNotifications((prev) => {
+      const next = prev.filter((noti) => noti.id !== item.id);
+      const hasPendingInvites = next.some((noti) => noti.hasActions);
+
+      if (next.length === 0 || !hasPendingInvites) {
+        setCurrentRoute(routes.emptyNotification);
+        setRouteParams({});
+      }
+
+      return next;
+    });
+  };
 
   const toggleBookmark = (id, event) => {
     setSavedEvents((current) => {
@@ -103,9 +129,16 @@ const AppRoutes = () => {
           onOpenEvents={() => navigation.navigate(routes.eventPage)}
           onOpenProfile={() => navigation.navigate(routes.profilePage)}
           onOpenMap={() => navigation.navigate(routes.mapPage)}
-          onNotificationPress={() =>
-            navigation.navigate(routes.emptyNotification)
-          }
+          onNotificationPress={() => {
+            const hasPendingInvites = notifications.some(
+              (item) => item.hasActions,
+            );
+            navigation.navigate(
+              hasPendingInvites
+                ? routes.notification
+                : routes.emptyNotification,
+            );
+          }}
           savedEvents={savedEvents}
           onToggleBookmark={(id, event) => toggleBookmark(id, event)}
         />
@@ -134,6 +167,15 @@ const AppRoutes = () => {
       return <ProfilePage navigation={navigation} />;
     case routes.mapPage:
       return <MapPage navigation={navigation} />;
+    case routes.notification:
+      return (
+        <NotificationScreen
+          navigation={navigation}
+          notifications={notifications}
+          onAccept={(item) => handleNotificationAction(item, true)}
+          onReject={(item) => handleNotificationAction(item, false)}
+        />
+      );
     case routes.emptyNotification:
       return <EmptyNotificationScreen navigation={navigation} />;
     case routes.menu:
